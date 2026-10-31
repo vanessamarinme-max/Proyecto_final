@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de adopción | Huellitas</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Huellitas</h1>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="mascotas.html">Mascotas</a>
+            <a href="solicitud.html">Adoptar</a>
+            <a href="login.html">Iniciar sesión</a>
+        </nav>
+    </header>
+
+    <section class="presentacion">
+        <h2>Solicitud de adopción</h2>
+
+        <p>
+            Completa tus datos para iniciar el proceso
+            de adopción de una mascota.
+        </p>
+    </section>
+
+    <section class="formulario">
+
+        <form>
+
+            <h3>Datos personales</h3>
+
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="documento">Documento:</label>
+            <input type="text" id="documento" name="documento" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+
+            <h3>Información de adopción</h3>
+
+            <label for="mascota">Mascota que deseas adoptar:</label>
+
+            <select id="mascota" name="mascota" required>
+                <option value="">Selecciona una mascota</option>
+                <option value="Max">Max</option>
+                <option value="Luna">Luna</option>
+                <option value="Toby">Toby</option>
+            </select>
+
+            <label for="vivienda">Tipo de vivienda:</label>
+
+            <select id="vivienda" name="vivienda" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
+            </select>
+
+            <label for="motivo">¿Por qué deseas adoptar?</label>
+            <textarea id="motivo" name="motivo" rows="4" required></textarea>
+
+            <button type="submit">Enviar solicitud</button>
+
+        </form>
+
+    </section>
+
+    <footer>
+        <h3>Huellitas</h3>
+        <p>Una segunda oportunidad comienza con una adopción.</p>
+        <p>© 2026 Huellitas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
