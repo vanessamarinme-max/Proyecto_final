@@ -1,58 +1,58 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitud de adopción | Huellitas</title>
+    <title>Solicitud de adopción | Huellitas de Amor</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>Huellitas de Amor</h1>
+    <header class="encabezado">
+        <a href="index.html" class="logo">
+            <img src="../img/logo.png" alt="Logo de Huellitas de Amor">
+            <span>Huellitas de Amor</span>
+        </a>
 
-        <nav>
+        <nav class="menu">
             <a href="index.html">Inicio</a>
             <a href="mascotas.html">Mascotas</a>
-            <a href="solicitud.html">Adoptar</a>
+            <a href="solicitud.html" class="activo">Adoptar</a>
             <a href="login.html">Iniciar sesión</a>
         </nav>
     </header>
 
-    <section class="presentacion">
-        <h2>Solicitud de adopción</h2>
-
-        <p>
-            Completa tus datos para iniciar el proceso
-            de adopción de una mascota.
-        </p>
+    <section class="encabezado-pagina">
+        <h1>Solicitud de adopción</h1>
+        <p>Estamos felices de que quieras darle un hogar a una de nuestras mascotas.</p>
     </section>
 
-    <section class="formulario">
 
-        <form>
+    <section class="formulario-contenedor">
+        <form class="formulario" data-demo>
+            <h2>Datos personales</h2>
 
-            <h3>Datos personales</h3>
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre completo" required>
 
-            <label for="nombre">Nombre completo:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <label for="documento">Documento</label>
+            <input type="text" id="documento" name="documento" placeholder="Número de documento" required>
 
-            <label for="documento">Documento:</label>
-            <input type="text" id="documento" name="documento" required>
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Número de contacto" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
 
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="correo" required>
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Dirección de residencia" required>
 
-            <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" name="direccion" required>
+            <h2>Información de adopción</h2>
 
-            <h3>Información de adopción</h3>
-
-            <label for="mascota">Mascota que deseas adoptar:</label>
+            <label for="mascota">¿Qué mascota deseas adoptar?</label>
 
             <select id="mascota" name="mascota" required>
                 <option value="">Selecciona una mascota</option>
@@ -61,7 +61,7 @@
                 <option value="Toby">Toby</option>
             </select>
 
-            <label for="vivienda">Tipo de vivienda:</label>
+            <label for="vivienda">Tipo de vivienda</label>
 
             <select id="vivienda" name="vivienda" required>
                 <option value="">Selecciona una opción</option>
@@ -69,21 +69,21 @@
                 <option value="Apartamento">Apartamento</option>
             </select>
 
-            <label for="motivo">¿Por qué deseas adoptar?</label>
-            <textarea id="motivo" name="motivo" rows="4" required></textarea>
 
-            <button type="submit">Enviar solicitud</button>
+            <label for="motivo">¿Por qué deseas adoptar?</label>
+            <textarea id="motivo" name="motivo" rows="5" placeholder="Cuéntanos por qué deseas adoptar..." required></textarea>
+            <button type="submit" class="boton">Enviar solicitud</button>
 
         </form>
-
     </section>
 
-    <footer>
-        <h3>Huellitas</h3>
+    <footer class="pie-pagina">
+        <h3>Huellitas de Amor</h3>
         <p>Una segunda oportunidad comienza con una adopción.</p>
-        <p>© 2026 Huellitas. Todos los derechos reservados.</p>
+        <p>© 2026 Huellitas de Amor. Todos los derechos reservados.</p>
     </footer>
 
     <script src="../js/main.js"></script>
+
 </body>
 </html>

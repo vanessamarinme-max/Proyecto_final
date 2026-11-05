@@ -5,17 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Huellitas de Amor | Adopción de mascotas</title>
-
+    <title>Huellitas de Amor | Inicio</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
 
-    <header>
-        <h1><img src="../img/logo.jpg" alt="Logo de Huellitas">Huellitas</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
+    <header class="encabezado">
+        <a href="index.html" class="logo">
+            <img src="../img/logo.jpg" alt="Logo de Huellitas de Amor">
+            <span>Huellitas de Amor</span>
+        </a>
+
+        <nav class="menu">
+            <a href="index.html" class="activo">Inicio</a>
             <a href="mascotas.html">Mascotas</a>
             <a href="solicitud.html">Adoptar</a>
             <a href="login.html">Iniciar sesión</a>
@@ -23,74 +26,98 @@
     </header>
 
     <section class="portada">
-        <div class="contenido">
-            <h2>¡Encuentra a tu nuevo mejor amigo!</h2>
-            <p>Muchos animales esperan una familia que les dé amor, cuidado y un hogar.</p>
-            <a href="mascotas.html" class="boton">Conoce nuestras mascotas</a>
+        <div class="portada-texto">
+            <h1>Un hogar lleno de amor comienza con una adopción</h1>
+            <p>Conoce a nuestros peluditos y encuentra ese compañero especial que está esperando una familia.</p>
+            <a href="mascotas.html" class="boton">Conocer mascotas</a>
+        </div>
+
+        <div class="portada-imagen">
+            <img src="../img/max.jpg" alt="Mascota esperando un hogar">
         </div>
     </section>
 
     <section class="presentacion">
-        <h2>Bienvenido a Huellitas</h2>
-        <p>Somos una plataforma que busca conectar mascotas que necesitan un hogar con personas dispuestas a brindarles una segunda oportunidad.</p>
+        <h2>Bienvenido a Huellitas de Amor</h2>
+        <p>Somos una plataforma que busca conectar mascotas que necesitan un hogar con personas dispuestas a brindarles cariño, protección y una segunda oportunidad.</p>
+
     </section>
 
-    <section class="mascotas">
-        <h2>Ellos buscan un hogar</h2>
-        <div class="tarjetas">
+    <section class="seccion-mascotas">
+        <div class="titulo-seccion">
+            <h2>Ellos buscan una familia</h2>
+            <p>Conoce algunos de nuestros amigos disponibles para adopción.</p>
+        </div>
+        <div class="rejilla-mascotas">
 
-            <div class="tarjeta">
+            <article class="tarjeta">
                 <img src="../img/max.jpg" alt="Perro Max">
-                <h3>Max</h3>
-                <p>Perro | 2 años</p>
-                <p>Amigable y juguetón.</p>
-                <a href="mascotas.html">Conocer más</a>
-            </div>
+                <div class="tarjeta-contenido">
+                    <h3>Max</h3>
+                    <p>Perro · 2 años</p>
+                    <p>Amigable y juguetón.</p>
+                    <a href="detalle-mascota.html#max" class="enlace">Conocer más</a>
+                </div>
+            </article>
 
-            <div class="tarjeta">
+            <article class="tarjeta">
                 <img src="../img/luna.jpg" alt="Gata Luna">
-                <h3>Luna</h3>
-                <p>Gato | 1 año</p>
-                <p>Tranquila y cariñosa.</p>
-                <a href="mascotas.html">Conocer más</a>
-            </div>
+                <div class="tarjeta-contenido">
+                    <h3>Luna</h3>
+                    <p>Gato · 1 año</p>
+                    <p>Tranquila y cariñosa.</p>
+                    <a href="detalle-mascota.html#luna" class="enlace">Conocer más</a>
+                </div>
+            </article>
 
-            <div class="tarjeta">
+
+            <article class="tarjeta">
                 <img src="../img/toby.jpg" alt="Perro Toby">
-                <h3>Toby</h3>
-                <p>Perro | 3 años</p>
-                <p>Activo y muy alegre.</p>
-                <a href="mascotas.html">Conocer más</a>
-            </div>
+                <div class="tarjeta-contenido">
+                    <h3>Toby</h3>
+                    <p>Perro · 3 años</p>
+                    <p>Activo y muy alegre.</p>
+                    <a href="detalle-mascota.html#toby" class="enlace">Conocer más</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="centrar">
+            <a href="mascotas.html" class="boton">Ver todas las mascotas</a>
         </div>
     </section>
 
-    <section class="adoptar">
-        <h2>¿Cómo puedes adoptar?</h2>
-        <div class="pasos">
+    <section class="seccion-pasos">
+        <div class="titulo-seccion">
+            <h2>¿Cómo puedes adoptar?</h2>
+            <p>El proceso es sencillo. Solo debes seguir estos pasos.</p>
+        </div>
 
-            <div>
-                <h3>1. Elige</h3>
-                <p>Conoce las mascotas disponibles.</p>
-            </div>
+        <div class="rejilla-pasos">
+            <article class="paso">
+                <span>01</span>
+                <h3>Conoce</h3>
+                <p>Explora las mascotas que están buscando una familia.</p>
+            </article>
 
-            <div>
-                <h3>2. Solicita</h3>
-                <p>Completa el formulario de adopción.</p>
-            </div>
+            <article class="paso">
+                <span>02</span>
+                <h3>Solicita</h3>
+                <p>Completa el formulario con tus datos personales.</p>
+            </article>
 
-            <div>
-                <h3>3. Adopta</h3>
-                <p>Espera la aprobación y recibe a tu nuevo amigo.</p>
-            </div>
+            <article class="paso">
+                <span>03</span>
+                <h3>Adopta</h3>
+                <p>Espera la revisión de tu solicitud y comienza una nueva historia.</p>
+            </article>
         </div>
     </section>
 
-
-    <footer>
-        <h3>Huellitas</h3>
+    <footer class="pie-pagina">
+        <h3>Huellitas de Amor</h3>
         <p>Una segunda oportunidad comienza con una adopción.</p>
-        <p>© 2026 Huellitas. Todos los derechos reservados.</p>
+        <p>© 2026 Huellitas de Amor. Todos los derechos reservados.</p>
     </footer>
 
     <script src="../js/main.js"></script>
