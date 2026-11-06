@@ -1,0 +1,14 @@
+
+# Entorno virtual
+venv/
+.venv/
+
+# Variables privadas
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Configuración de editores
+.vscode/

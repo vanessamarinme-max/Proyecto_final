@@ -1,0 +1,463 @@
+:root {
+    --color-principal: #356859;
+    --color-secundario: #DCEFE5;
+    --color-fondo: #FFFAF4;
+    --color-blanco: #FFFFFF;
+    --color-texto: #333333;
+    --color-destacado: #F5C16C;
+    --color-hover: #244B3E;
+    --color-borde: #E5E5E5;
+    --texto-pequeno: 14px;
+    --texto-normal: 16px;
+    --texto-subtitulo: 28px;
+    --texto-titulo: 38px;
+    --espacio-pequeno: 10px;
+    --espacio-medio: 20px;
+    --espacio-grande: 40px;
+    --radio-borde: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-size: var(--texto-normal);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.encabezado {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 6%;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-blanco);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    color: var(--color-blanco);
+    font-size: var(--texto-normal);
+    transition: 0.3s;
+}
+
+.menu a:hover, .menu a.activo {
+    color: var(--color-destacado);
+}
+
+.portada {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 70px 8%;
+    background-color: var(--color-secundario);
+}
+
+.portada-texto {
+    flex: 1;
+}
+
+.portada-texto h1 {
+    color: var(--color-principal);
+    font-size: var(--texto-titulo);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.portada-texto p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 550px;
+}
+
+.portada-imagen {
+    flex: 1;
+}
+
+.portada-imagen img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px #00000020;
+}
+
+.boton {
+    display: inline-block;
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radio-borde);
+    font-size: var(--texto-normal);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background-color: var(--color-hover);
+}
+
+.presentacion {
+    text-align: center;
+    padding: 65px 10%;
+}
+
+.presentacion h2 {
+    color: var(--color-principal);
+    font-size: var(--texto-subtitulo);
+    margin-bottom: 20px;
+}
+
+.presentacion p {
+    max-width: 750px;
+    margin: auto;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.titulo-seccion h2 {
+    color: var(--color-principal);
+    font-size: var(--texto-subtitulo);
+    margin-bottom: 10px;
+}
+
+.seccion-mascotas {
+    padding: 60px 8%;
+}
+
+.rejilla-mascotas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.tarjeta {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    box-shadow: 0 4px 12px #00000012;
+    transition: 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px #00000020;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-contenido {
+    padding: 22px;
+}
+
+.tarjeta-contenido h3 {
+    color: var(--color-principal);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.tarjeta-contenido p {
+    margin-bottom: 10px;
+}
+
+.enlace {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+.enlace:hover {
+    color: var(--color-hover);
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.seccion-pasos {
+    background-color: var(--color-secundario);
+    padding: 65px 8%;
+}
+
+.rejilla-pasos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.paso {
+    background-color: var(--color-blanco);
+    padding: 30px;
+    border-radius: var(--radio-borde);
+    text-align: center;
+}
+
+.paso span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.paso h3 {
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.encabezado-pagina {
+    background-color: var(--color-secundario);
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.encabezado-pagina h1 {
+    color: var(--color-principal);
+    font-size: var(--texto-titulo);
+    margin-bottom: 10px;
+}
+
+.detalles-mascotas {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    padding: 50px 8%;
+}
+
+.detalle-card {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    background-color: var(--color-blanco);
+    padding: 25px;
+    border-radius: var(--radio-borde);
+
+    box-shadow: 0 4px 12px #00000012;
+
+    scroll-margin-top: 20px;
+}
+
+.detalle-card img {
+    width: 40%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: var(--radio-borde);
+}
+
+.detalle-contenido {
+    flex: 1;
+}
+
+.detalle-contenido h2 {
+    color: var(--color-principal);
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.estado {
+    display: inline-block;
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+
+    padding: 5px 12px;
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.descripcion {
+    margin: 15px 0 25px;
+}
+
+.formulario-contenedor {
+    padding: 50px 20px;
+}
+
+.formulario {
+    max-width: 600px;
+    margin: auto;
+    background-color: var(--color-blanco);
+    padding: 35px;
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 15px #00000012;
+}
+
+.formulario h2 {
+    color: var(--color-principal);
+    margin-bottom: 20px;
+}
+
+.formulario label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.formulario input, .formulario select, .formulario textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--color-borde);
+    border-radius: 7px;
+    font-size: var(--texto-normal);
+    font-family: Arial, sans-serif;
+}
+
+.formulario input:focus, .formulario select:focus, .formulario textarea:focus {
+    outline: 2px solid var(--color-secundario);
+    border-color: var(--color-principal);
+}
+
+.formulario textarea {
+    resize: vertical;
+}
+
+.formulario button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.nota-formulario {
+    text-align: center;
+    margin-top: 20px;
+    font-size: var(--texto-pequeno);
+}
+
+.pie-pagina {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 35px 20px;
+    line-height: 2;
+}
+
+.pie-pagina h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .encabezado {
+        flex-direction: column;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .portada {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .portada-texto p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rejilla-mascotas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .menu {
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .portada {
+        padding: 45px 20px;
+    }
+
+    .portada-texto h1 {
+        font-size: 30px;
+    }
+
+    .portada-imagen img {
+        height: 230px;
+    }
+
+    .rejilla-mascotas {
+        grid-template-columns: 1fr;
+    }
+
+    .rejilla-pasos {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detalle-card img {
+        width: 100%;
+        height: 230px;
+    }
+
+    .formulario {
+        padding: 22px;
+    }
+}
