@@ -1,67 +1,38 @@
-# HUELLITAS
-### Sistema de gestión y adopción de mascotas
+# 🐾 Huellitas de Amor | Refugio y Adopción de Perritos
 
-## Descripción del proyecto
+Sistema web integral y backend analítico desarrollado para la gestión de un refugio de animales, combinando una interfaz interactiva con tecnologías modernas y una arquitectura de base de datos NoSQL basada en MongoDB.
 
-Huellitas es una aplicación web diseñada para facilitar la gestión de los procesos de adopción de mascotas en refugios de animales.
+---
 
-El sistema permite administrar la información de las mascotas, registrar adoptantes, gestionar solicitudes de adopción y realizar seguimiento a los animales adoptados.
+## Autores y Contexto Académico
+* **Proyecto:** Trabajo Final - Bases de NoSQL / Ingeniería Web
+* **Institución:** Universidad Católica Luis Amigó
+* **Ciudad:** Medellín, Colombia
 
-## Objetivo
+---
 
-Desarrollar una plataforma web conectada a una base de datos en la nube que permita organizar y administrar los procesos de adopción de mascotas.
+## Tecnologías Utilizadas
 
-## Tecnologías utilizadas
+### Backend y Servidor
+* **Python / Flask:** Framework minimalista para el desarrollo de la API RESTful.
+* **PyMongo:** Controlador oficial para la conexión y gestión de operaciones con MongoDB.
 
-- HTML
-- CSS
-- JavaScript
-- Python
-- Flask
-- MongoDB Atlas
-- PyMongo
-- Git y GitHub
+### Base de Datos
+* **MongoDB Atlas / Local:** Base de datos NoSQL orientada a documentos.
+* **Aggregation Pipelines:** Consultas avanzadas utilizando operadores de etapas (`$group`, `$sum`, `$multiply`, `$lookup`, `$unwind`, `$sort`).
 
-## Estructura del proyecto
+### Frontend e Interfaz de Usuario
+* **HTML5 Semántico y CSS3:** Estructuración de páginas y diseño responsivo basado en variables personalizadas y accesibilidad web.
+* **JavaScript (ES6+):** Gestión de peticiones asíncronas (`fetch`), consumo de la API, renderizado dinámico de catálogos y operaciones del panel de control.
 
-- `frontend/`: interfaz gráfica.
-- `backend/`: servidor y API.
-- `database/`: modelo y consultas de la base de datos.
-- `docs/`: documentación y evidencias.
+---
 
-## Funcionalidades principales
+## Estructura del Repositorio
 
-- Registro y administración de mascotas.
-- Consulta y búsqueda de mascotas disponibles.
-- Registro de adoptantes.
-- Gestión de solicitudes de adopción.
-- Administración de adopciones.
-- Seguimiento de mascotas adoptadas.
-- Reportes y estadísticas.
-
-## Base de datos
-
-Se utilizará MongoDB Atlas como servicio de base de datos en la nube.
-
-Colecciones principales:
-
-- Mascotas
-- Adoptantes
-- Solicitudes
-- Adopciones
-- Seguimientos
-- Usuarios
-
-## Integrantes
-
-- Integrante 1:
-- Integrante 2:
-
-## Estado del proyecto
-
-En desarrollo.
-
-## Enlaces
-
-- Aplicación desplegada: Pendiente.
-- Documentación: Pendiente.
+```text
+PROYECTO_FINAL/
+│
+├── backend/            # Lógica del servidor Flask y rutas de la API (crud.py)
+├── database/           # Scripts de pruebas y consultas de agregación oficial (consultas.js)
+├── frontend/           # Páginas HTML, estilos (styles.css) y lógica de cliente (main.js)
+└── README.md           # Documentación técnica del proyecto
