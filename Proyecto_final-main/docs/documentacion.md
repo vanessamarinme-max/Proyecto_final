@@ -1,6 +1,6 @@
-# 🐾 Documentación Técnica del Proyecto: Huellitas de Amor
+# Documentación Técnica del Proyecto: Huellitas de Amor
 
-## 📄 Información del Proyecto
+## Información del Proyecto
 * **Nombre del Sistema:** Huellitas de Amor - Refugio y Adopción Canina
 * **Integrantes / Autores:** Equipo de Desarrollo Huellitas de Amor
 * **Tecnologías Backend:** Python (Flask), PyMongo, Certifi
