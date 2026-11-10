@@ -25,6 +25,7 @@ body {
   color: var(--color-azul-noche);
   background-color: var(--color-crema);
   line-height: 1.6;
+  padding-bottom: 6rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -112,6 +113,8 @@ a:focus-visible {
   text-decoration: none;
   padding: var(--espaciado-mediano) var(--espaciado-grande);
   border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-cta:hover {
@@ -275,7 +278,7 @@ aside {
 }
 
 .etiqueta-estado.urgente {
-  background-color: #D90429; /* Color rojo de alerta para casos urgentes */
+  background-color: #D90429;
   color: var(--color-blanco);
 }
 
@@ -311,10 +314,6 @@ aside {
   outline-offset: 3px;
 }
 
-body {
-  padding-bottom: 6rem;
-}
-
 .campo-password-group {
     display: flex;
     align-items: center;
@@ -323,7 +322,7 @@ body {
 
 .campo-password-group input {
     flex: 1;
-    margin-bottom: 0 !important; /* Anula el margin inferior solo para este campo */
+    margin-bottom: 0 !important;
 }
 
 .btn-toggle-eye {
@@ -339,4 +338,44 @@ body {
 
 .btn-toggle-eye:hover {
     background-color: var(--color-naranja-pedal) !important;
+}
+
+/* ========================================================
+   ESTILOS NUEVOS PARA LA SECCIÓN DE REPORTES (DASHBOARD ADMIN)
+   ======================================================== */
+.botones-reportes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.resultado-reportes-box {
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-gris-asfalto);
+    border-radius: 0.5rem;
+    padding: var(--espaciado-grande);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: var(--fuente-texto);
+    color: var(--color-azul-noche);
+    min-height: 100px;
+}
+
+.resultado-reportes-box h3 {
+    margin-top: 0;
+    margin-bottom: var(--espaciado-mediano);
+    color: var(--color-azul-noche);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--color-crema);
+    padding-bottom: var(--espaciado-pequeno);
+}
+
+.resultado-reportes-box ul {
+    list-style-type: disc;
+    padding-left: var(--espaciado-grande);
+    margin: 0;
+}
+
+.resultado-reportes-box li {
+    margin-bottom: var(--espaciado-pequeno);
+    line-height: 1.5;
 }
