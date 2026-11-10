@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarFormularioAdopcion();
     configurarFormularioAdminPerrito();
     configurarFormularioAdminProducto();
+    configurarReportesAdmin(); // Activa los reportes analíticos y de gestión en el dashboard
     
     // Cargar catálogos dinámicamente si estamos en las páginas públicas
     cargarPerritosCatalogo();
@@ -162,7 +163,6 @@ function configurarFormularioAdopcion() {
 
 /**
  * Registra un nuevo perrito desde el Panel Admin y lo guarda en MongoDB (colección 'perros')
- * Soporta tanto si el formulario usa id="form-perrito" como si usa action="perritos.html"
  */
 function configurarFormularioAdminPerrito() {
     const formPerrito = document.querySelector("#form-perrito") || document.querySelector("form[action='perritos.html']");
@@ -205,7 +205,6 @@ function configurarFormularioAdminPerrito() {
 
 /**
  * Registra un nuevo producto desde el Panel Admin y lo guarda en MongoDB (colección 'tienda')
- * Soporta tanto si el formulario usa id="form-producto" como si usa action="tienda.html"
  */
 function configurarFormularioAdminProducto() {
     const formProducto = document.querySelector("#form-producto") || document.querySelector("form[action='tienda.html']");
@@ -223,7 +222,6 @@ function configurarFormularioAdminProducto() {
             };
 
             try {
-                // Modificado para guardar en la colección 'tienda'
                 const respuesta = await fetch(`${API_URL}/api/tienda`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -300,7 +298,6 @@ async function cargarProductosTienda() {
     if (!contenedor) return;
 
     try {
-        // Consultamos a la colección 'tienda'
         const respuesta = await fetch(`${API_URL}/api/tienda`);
         const productos = await respuesta.json();
 
@@ -372,4 +369,171 @@ function configurarEnlacesWhatsApp() {
             console.log("Redirigiendo a la línea de atención de WhatsApp de Huellitas de Amor...");
         });
     });
+}
+
+/**
+ * Configura los eventos para mostrar los reportes analíticos y permitir gestión en el dashboard
+ */
+function configurarReportesAdmin() {
+    const contenedor = document.querySelector("#contenedor-resultados-reporte");
+    const btnPerritos = document.querySelector("#btn-rep-perritos");
+    const btnTienda = document.querySelector("#btn-rep-tienda");
+    const btnSolicitudes = document.querySelector("#btn-rep-solicitudes");
+
+    if (!contenedor) return;
+
+    if (btnPerritos) {
+        btnPerritos.addEventListener("click", async () => {
+            contenedor.innerHTML = "<p>Cargando reporte de perritos por tamaño...</p>";
+            try {
+                const res = await fetch(`${API_URL}/api/reportes/perritos-por-tamano`);
+                const data = await res.json();
+                
+                if (data.length === 0) {
+                    contenedor.innerHTML = "<p>No hay datos disponibles.</p>";
+                    return;
+                }
+
+                let html = "<h3>📊 Estadísticas de Perritos por Tamaño</h3>";
+                data.forEach((item, index) => {
+                    html += `
+                        <div style="margin-bottom: 15px;">
+                            <strong>${index + 1}. Perritos tamaño ${item._id || "No especificado"}</strong>
+                            <ul style="margin-top: 5px; padding-left: 20px;">
+                                <li><strong>Cantidad total:</strong> ${item.total_perritos}</li>
+                            </ul>
+                        </div>
+                    `;
+                });
+                contenedor.innerHTML = html;
+            } catch (err) {
+                contenedor.innerHTML = "<p style='color:red;'>Error al cargar el reporte.</p>";
+            }
+        });
+    }
+
+    if (btnTienda) {
+        btnTienda.addEventListener("click", async () => {
+            contenedor.innerHTML = "<p>Cargando inventario de la tienda...</p>";
+            try {
+                const res = await fetch(`${API_URL}/api/tienda`);
+                const productos = await res.json();
+
+                if (productos.length === 0) {
+                    contenedor.innerHTML = "<p>No hay productos registrados en la tienda.</p>";
+                    return;
+                }
+
+                let html = "<h3>📦 Gestión e Inventario de Tienda (Actualizar y Eliminar)</h3><ul style='padding-left: 20px; margin-top: 10px;'>";
+                productos.forEach(prod => {
+                    html += `
+                        <li style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #ddd; padding-bottom: 8px;">
+                            <span><strong>${prod.nombre}</strong> (${prod.categoria}) — Stock: ${prod.stock} — $${Number(prod.precio).toLocaleString()} COP</span>
+                            <div>
+                                <button type="button" onclick="actualizarDesdeReporte('tienda', '${prod._id}')" style="background-color: #3B82F6; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 600; margin-right: 5px;">Editar</button>
+                                <button type="button" onclick="eliminarDesdeReporte('tienda', '${prod._id}')" style="background-color: #D90429; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 600;">Eliminar</button>
+                            </div>
+                        </li>
+                    `;
+                });
+                html += "</ul>";
+                contenedor.innerHTML = html;
+            } catch (err) {
+                contenedor.innerHTML = "<p style='color:red;'>Error al cargar el inventario.</p>";
+            }
+        });
+    }
+
+    if (btnSolicitudes) {
+        btnSolicitudes.addEventListener("click", async () => {
+            contenedor.innerHTML = "<p>Cargando solicitudes con información del adoptante ($lookup)...</p>";
+            try {
+                const res = await fetch(`${API_URL}/api/reportes/solicitudes-detalladas`);
+                const data = await res.json();
+
+                if (data.length === 0) {
+                    contenedor.innerHTML = "<p>No hay solicitudes de adopción registradas con cruce de adoptante.</p>";
+                    return;
+                }
+
+                let html = "<h3>📄 Solicitudes Detalladas (Cruce con Adoptantes)</h3>";
+                data.forEach((item, index) => {
+                    const adoptante = item.info_adoptante || {};
+                    html += `
+                        <div style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">
+                            <strong>Solicitud #${index + 1}</strong>
+                            <ul style="margin-top: 5px; padding-left: 20px;">
+                                <li><strong>Adoptante:</strong> ${adoptante.nombre || "N/A"}</li>
+                                <li><strong>Documento:</strong> ${adoptante.documento || "N/A"}</li>
+                                <li><strong>Programa:</strong> ${item.programa || "N/A"}</li>
+                                <li><strong>Tipo de Vivienda:</strong> ${adoptante.tipo_vivienda || "N/A"}</li>
+                            </ul>
+                        </div>
+                    `;
+                });
+                contenedor.innerHTML = html;
+            } catch (err) {
+                contenedor.innerHTML = "<p style='color:red;'>Error al cargar las solicitudes.</p>";
+            }
+        });
+    }
+}
+
+/**
+ * Función global para actualizar registros de MongoDB mediante la API PUT
+ */
+async function actualizarDesdeReporte(coleccion, id) {
+    const nuevoStock = prompt("Ingresa la nueva cantidad en stock:");
+    if (nuevoStock === null) return; // Si el usuario cancela
+
+    try {
+        const respuesta = await fetch(`${API_URL}/api/${coleccion}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                stock: Number(nuevoStock)
+            })
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert("¡Registro actualizado correctamente en la base de datos!");
+            // Refresca automáticamente la vista del inventario de la tienda
+            document.querySelector("#btn-rep-tienda").click();
+        } else {
+            alert("Error al actualizar: " + (resultado.error || "Desconocido"));
+        }
+    } catch (error) {
+        console.error("Error de red:", error);
+        alert("No se pudo conectar con el servidor backend.");
+    }
+}
+
+/**
+ * Función global para eliminar registros de MongoDB mediante la API DELETE
+ */
+async function eliminarDesdeReporte(coleccion, id) {
+    if (!confirm("¿Estás seguro de eliminar este registro de la base de datos?")) return;
+
+    try {
+        const respuesta = await fetch(`${API_URL}/api/${coleccion}/${id}`, {
+            method: "DELETE"
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert("¡Registro eliminado correctamente de la base de datos!");
+            // Refresca automáticamente la vista del inventario de la tienda
+            document.querySelector("#btn-rep-tienda").click();
+        } else {
+            alert("Error al eliminar: " + (resultado.error || "Desconocido"));
+        }
+    } catch (error) {
+        console.error("Error de red:", error);
+        alert("No se pudo conectar con el servidor backend.");
+    }
 }
