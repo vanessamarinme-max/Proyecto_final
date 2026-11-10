@@ -1,147 +1,54 @@
+/**
+ * Consultas y Pipelines de Agregación Oficiales - Huellitas de Amor
+ * Proyecto Final - Base de NoSQL
+ */
+
+use("huellitas_de_amor");
 
 // ==========================================
-// BASE DE DATOS
+// CONSULTA 1: PERRITOS POR TAMAÑO ($group, $sum)
 // ==========================================
-
-use("HuellitasDeAmor");
-
-
-// ==========================================
-// CONSULTA 1: PERROS DISPONIBLES
-// ==========================================
-
-db.perros.find({
-    estado: "Disponible"
-});
-
-
-// ==========================================
-// CONSULTA 2: SOLICITUDES POR ESTADO
-// ==========================================
-
-db.solicitudesAdopcion.aggregate([
-
+db.perros.aggregate([
     {
-        $group: {
-            _id: "$estado",
-            cantidad: { $sum: 1 }
-        }
-    },
-
-    {
-        $sort: {
-            cantidad: -1
+        "$group": {
+            "_id": "$tamano",
+            "total_perritos": { "$sum": 1 }
         }
     }
-
-]);
-
-
-
-// ==========================================
-// CONSULTA 3: ATENCIONES VETERINARIAS
-// ==========================================
-
-db.registrosVeterinarios.aggregate([
-
-    {
-        $group: {
-            _id: "$tipo",
-            total: { $sum: 1 }
-        }
-    },
-
-    {
-        $sort: {
-            total: -1
-        }
-    },
-
-    {
-        $limit: 10
-    }
-
 ]);
 
 
 // ==========================================
-// CONSULTA 4: ADOPCIONES POR MES
+// CONSULTA 2: INVENTARIO DE TIENDA Y VALOR POTENCIAL ($group, $sum, $multiply, $sort)
 // ==========================================
-
-db.solicitudesAdopcion.aggregate([
-
+db.tienda.aggregate([
     {
-        $match: {
-            estado: "Completada",
-            fechaSolicitud: { $type: "string" }
+        "$group": {
+            "_id": "$categoria",
+            "total_stock": { "$sum": "$stock" },
+            "valor_inventario_potencial": { "$sum": { "$multiply": ["$precio", "$stock"] } },
+            "cantidad_productos": { "$sum": 1 }
         }
     },
-
-    {
-        $project: {
-            mes: {
-                $substr: ["$fechaSolicitud", 0, 7]
-            }
-        }
-    },
-
-    {
-        $group: {
-            _id: "$mes",
-            totalAdopciones: { $sum: 1 }
-        }
-    },
-
-    {
-        $sort: {
-            _id: 1
-        }
+    { 
+        "$sort": { "valor_inventario_potencial": -1 } 
     }
-
 ]);
 
 
 // ==========================================
-// CONSULTA 5: SOLICITUDES CON ADOPTANTES
-// Y PERROS
+// CONSULTA 3: SOLICITUDES DETALLADAS CON ADOPTANTES ($lookup, $unwind)
 // ==========================================
-
 db.solicitudesAdopcion.aggregate([
-
     {
-        $lookup: {
-            from: "adoptantes",
-            localField: "adoptante_id",
-            foreignField: "_id",
-            as: "adoptante"
+        "$lookup": {
+            "from": "adoptantes",
+            "localField": "adoptante_id",
+            "foreignField": "_id",
+            "as": "info_adoptante"
         }
     },
-
-    {
-        $lookup: {
-            from: "perros",
-            localField: "perro_id",
-            foreignField: "_id",
-            as: "perro"
-        }
-    },
-
-    {
-        $unwind: "$adoptante"
-    },
-
-    {
-        $unwind: "$perro"
-    },
-
-    {
-        $project: {
-            _id: 0,
-            adoptante: "$adoptante.nombre",
-            perro: "$perro.nombre",
-            estado: 1,
-            fechaSolicitud: 1
-        }
+    { 
+        "$unwind": "$info_adoptante" 
     }
-
 ]);
