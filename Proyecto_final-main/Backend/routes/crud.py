@@ -1,4 +1,3 @@
-
 from flask import Blueprint, request, jsonify
 from bson import ObjectId
 from pymongo.errors import PyMongoError
@@ -13,10 +12,10 @@ crud_bp = Blueprint("crud_bp", __name__)
 COLECCIONES = [
     "adoptantes",
     "perros",
-    "refugios",
+    "tienda",
     "registrosVeterinarios",
     "seguimientosPostAdopcion",
-    "solicitudesAdopcion"
+    "solicitudesAdopcion",
 ]
 
 
@@ -33,7 +32,7 @@ def obtener_coleccion(nombre):
 
 
 # =====================================
-# CREATE - CREAR REGISTRO
+# CREATE - CREAR REGISTRO (CON SEPARACIÓN AUTOMÁTICA)
 # =====================================
 
 @crud_bp.route("/api/<nombre>", methods=["POST"])
@@ -61,10 +60,49 @@ def crear_registro(nombre):
 
                 datos[campo] = ObjectId(valor)
 
+        # ========================================================
+        # LÓGICA ESPECIAL: SI ES SOLICITUD DE ADOPCIÓN
+        # Separamos y guardamos al adoptante en su propia colección
+        # ========================================================
+        if nombre == "solicitudesAdopcion":
+            documento_adoptante = datos.get("documento")
+
+            if documento_adoptante:
+                # Estructura de los datos que irán a la colección 'adoptantes'
+                datos_adoptante = {
+                    "nombre": datos.get("nombre"),
+                    "documento": documento_adoptante,
+                    "correo": datos.get("correo"),
+                    "celular": datos.get("celular"),
+                    "tipo_vivienda": datos.get("tipo_vivienda"),
+                    "cantidad_mascotas": datos.get("cantidad_mascotas")
+                }
+
+                coleccion_adoptantes = db["adoptantes"]
+                
+                # Buscamos si el adoptante ya existe por su número de documento
+                adoptante_existente = coleccion_adoptantes.find_one({"documento": documento_adoptante})
+
+                if adoptante_existente:
+                    # Si ya existe, actualizamos sus datos por si cambió de teléfono o correo
+                    adoptante_id = adoptante_existente["_id"]
+                    coleccion_adoptantes.update_one(
+                        {"_id": adoptante_id},
+                        {"$set": datos_adoptante}
+                    )
+                else:
+                    # Si es nuevo, lo insertamos en la colección 'adoptantes'
+                    resultado_adoptante = coleccion_adoptantes.insert_one(datos_adoptante)
+                    adoptante_id = resultado_adoptante.inserted_id
+
+                # Guardamos la relación (ObjectId) dentro de la solicitud de adopción
+                datos["adoptante_id"] = adoptante_id
+
+        # Insertamos el registro principal en su respectiva colección
         resultado = coleccion.insert_one(datos)
 
         return jsonify({
-            "mensaje": "Registro creado correctamente",
+            "mensaje": "Registro creado y datos separados correctamente",
             "id": str(resultado.inserted_id)
         }), 201
 
