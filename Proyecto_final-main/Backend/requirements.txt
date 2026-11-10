@@ -1,4 +1,4 @@
-
+Certifi
 Flask
 Flask-Cors
 pymongo
