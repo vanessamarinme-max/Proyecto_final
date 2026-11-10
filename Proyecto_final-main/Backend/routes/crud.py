@@ -24,10 +24,8 @@ COLECCIONES = [
 # =====================================
 
 def obtener_coleccion(nombre):
-
     if nombre not in COLECCIONES:
         return None
-
     return db[nombre]
 
 
@@ -37,7 +35,6 @@ def obtener_coleccion(nombre):
 
 @crud_bp.route("/api/<nombre>", methods=["POST"])
 def crear_registro(nombre):
-
     coleccion = obtener_coleccion(nombre)
 
     if coleccion is None:
@@ -51,7 +48,6 @@ def crear_registro(nombre):
     try:
         # Convertir referencias terminadas en _id
         for campo, valor in datos.items():
-
             if campo.endswith("_id") and valor:
                 if not ObjectId.is_valid(valor):
                     return jsonify({
@@ -68,7 +64,6 @@ def crear_registro(nombre):
             documento_adoptante = datos.get("documento")
 
             if documento_adoptante:
-                # Estructura de los datos que irán a la colección 'adoptantes'
                 datos_adoptante = {
                     "nombre": datos.get("nombre"),
                     "documento": documento_adoptante,
@@ -80,25 +75,20 @@ def crear_registro(nombre):
 
                 coleccion_adoptantes = db["adoptantes"]
                 
-                # Buscamos si el adoptante ya existe por su número de documento
                 adoptante_existente = coleccion_adoptantes.find_one({"documento": documento_adoptante})
 
                 if adoptante_existente:
-                    # Si ya existe, actualizamos sus datos por si cambió de teléfono o correo
                     adoptante_id = adoptante_existente["_id"]
                     coleccion_adoptantes.update_one(
                         {"_id": adoptante_id},
                         {"$set": datos_adoptante}
                     )
                 else:
-                    # Si es nuevo, lo insertamos en la colección 'adoptantes'
                     resultado_adoptante = coleccion_adoptantes.insert_one(datos_adoptante)
                     adoptante_id = resultado_adoptante.inserted_id
 
-                # Guardamos la relación (ObjectId) dentro de la solicitud de adopción
                 datos["adoptante_id"] = adoptante_id
 
-        # Insertamos el registro principal en su respectiva colección
         resultado = coleccion.insert_one(datos)
 
         return jsonify({
@@ -116,7 +106,6 @@ def crear_registro(nombre):
 
 @crud_bp.route("/api/<nombre>", methods=["GET"])
 def consultar_registros(nombre):
-
     coleccion = obtener_coleccion(nombre)
 
     if coleccion is None:
@@ -124,7 +113,6 @@ def consultar_registros(nombre):
 
     try:
         registros = list(coleccion.find())
-
         return jsonify(convertir_json(registros)), 200
 
     except PyMongoError as error:
@@ -137,7 +125,6 @@ def consultar_registros(nombre):
 
 @crud_bp.route("/api/<nombre>/<identificador>", methods=["GET"])
 def consultar_registro(nombre, identificador):
-
     coleccion = obtener_coleccion(nombre)
 
     if coleccion is None:
@@ -166,7 +153,6 @@ def consultar_registro(nombre, identificador):
 
 @crud_bp.route("/api/<nombre>/<identificador>", methods=["PUT"])
 def actualizar_registro(nombre, identificador):
-
     coleccion = obtener_coleccion(nombre)
 
     if coleccion is None:
@@ -180,12 +166,10 @@ def actualizar_registro(nombre, identificador):
     if not isinstance(datos, dict) or not datos:
         return jsonify({"error": "Debes enviar datos para actualizar"}), 400
 
-    # Evitar modificar el identificador
     datos.pop("_id", None)
 
     try:
         for campo, valor in datos.items():
-
             if campo.endswith("_id") and valor:
                 if not ObjectId.is_valid(valor):
                     return jsonify({
@@ -216,7 +200,6 @@ def actualizar_registro(nombre, identificador):
 
 @crud_bp.route("/api/<nombre>/<identificador>", methods=["DELETE"])
 def eliminar_registro(nombre, identificador):
-
     coleccion = obtener_coleccion(nombre)
 
     if coleccion is None:
@@ -237,5 +220,70 @@ def eliminar_registro(nombre, identificador):
             "mensaje": "Registro eliminado correctamente"
         }), 200
 
+    except PyMongoError as error:
+        return jsonify({"error": str(error)}), 500
+
+
+# =====================================
+# CONSULTAS ANALÍTICAS Y REPORTES (AGREGACIONES)
+# =====================================
+
+@crud_bp.route("/api/reportes/tienda-por-categoria", methods=["GET"])
+def reporte_tienda_categoria():
+    """Calcula el stock total y valor potencial del inventario agrupado por categoría en la tienda."""
+    try:
+        pipeline = [
+            {
+                "$group": {
+                    "_id": "$categoria",
+                    "total_stock": {"$sum": "$stock"},
+                    "valor_inventario_potencial": {"$sum": {"$multiply": ["$precio", "$stock"]}},
+                    "cantidad_productos": {"$sum": 1}
+                }
+            },
+            {"$sort": {"valor_inventario_potencial": -1}}
+        ]
+        resultado = list(db["tienda"].aggregate(pipeline))
+        return jsonify(convertir_json(resultado)), 200
+    except PyMongoError as error:
+        return jsonify({"error": str(error)}), 500
+
+
+@crud_bp.route("/api/reportes/solicitudes-detalladas", methods=["GET"])
+def reporte_solicitudes_detalladas():
+    """Realiza un JOIN ($lookup) entre solicitudes de adopción y los datos del adoptante."""
+    try:
+        pipeline = [
+            {
+                "$lookup": {
+                    "from": "adoptantes",
+                    "localField": "adoptante_id",
+                    "foreignField": "_id",
+                    "as": "info_adoptante"
+                }
+            },
+            {"$unwind": "$info_adoptante"}
+        ]
+        resultado = list(db["solicitudesAdopcion"].aggregate(pipeline))
+        return jsonify(convertir_json(resultado)), 200
+    except PyMongoError as error:
+        return jsonify({"error": str(error)}), 500
+
+
+@crud_bp.route("/api/reportes/perritos-por-tamano", methods=["GET"])
+def reporte_perritos_tamano():
+    """Agrupa y cuenta los perritos disponibles según su tamaño."""
+    try:
+        pipeline = [
+            {
+                "$group": {
+                    "_id": "$tamano",
+                    "total_perritos": {"$sum": 1}
+                }
+            },
+            {"$sort": {"total_perritos": -1}}
+        ]
+        resultado = list(db["perros"].aggregate(pipeline))
+        return jsonify(convertir_json(resultado)), 200
     except PyMongoError as error:
         return jsonify({"error": str(error)}), 500
