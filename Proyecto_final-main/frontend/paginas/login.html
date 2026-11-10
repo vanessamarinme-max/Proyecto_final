@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acceso al panel de administración de Huellitas de Amor.">
+    <title>Iniciar Sesión Admin | Huellitas de Amor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <p><strong>Huellitas de Amor</strong></p>
+
+        <nav aria-label="Navegación principal">
+            <ul id="menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="perritos.html">Perritos en adopción</a></li>
+                <li><a href="adopcion.html">Solicitud de adopción</a></li>
+                <li><a href="login.html" class="activo" aria-current="page">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Acceso de Administrador</h1>
+
+        <section class="seccion-login">
+            <h2>Iniciar Sesión</h2>
+            <p>Ingresa tus credenciales para acceder al panel de gestión del refugio.</p>
+
+            <!-- Al enviar este formulario redirige a la página privada del panel admin -->
+            <form id="form-login-admin" class="form-admin">
+                <fieldset>
+                    <legend>Credenciales del administrador</legend>
+
+                    <p>
+                        <label for="usuario">Usuario o correo:</label>
+                        <input type="text" id="usuario" name="usuario" 
+                            placeholder="admin@huellitasdeamor.org" required>
+                    </p>
+
+                    <p class="contenedor-password">
+                        <label for="password">Contraseña:</label>
+                        <div class="campo-password-group">
+                            <input type="password" id="password" name="password" minlength="6" required>
+                            <button type="button" id="btn-toggle-password" class="btn-toggle-eye" aria-label="Mostrar contraseña">
+                                👁️
+                            </button>
+                        </div>
+                    </p>
+                </fieldset>
+
+                <button type="submit" class="btn-cta">Ingresar al panel</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Huellitas de Amor | Refugio y adopción de perritos en Medellín</p>
+        <p>Correo: <a href="mailto:contacto@huellitasdeamor.example">contacto@huellitasdeamor.example</a></p>
+        <p>&copy; 2026 Huellitas de Amor</p>
+    </footer>
+
+    <a
+    class="whatsapp-fijo"
+    href="https://wa.me/573114231400"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp, se abre en otra pestaña">
+    WhatsApp
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

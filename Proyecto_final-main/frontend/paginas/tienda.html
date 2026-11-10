@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra comida, artículos de aseo, camas y accesorios para perros y gatos en Huellitas de Amor. Todas las compras apoyan nuestro refugio en Medellín.">
+    <title>Tienda Solidaria | Huellitas de Amor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../img/logo.jpg"
+             alt="Logo de Huellitas de Amor"
+             width="150">
+
+        <nav aria-label="Navegación principal">
+            <ul id="menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="perritos.html">Mascotas en adopción</a></li>
+                <li><a href="tienda.html" class="activo" aria-current="page">Tienda</a></li>
+                <li><a href="adopcion.html">Solicitud de adopción</a></li>
+                <li><a href="login.html">Admin</a></li>
+            </ul>
+        </nav>
+
+        <h1>Tienda Solidaria Huellitas de Amor</h1>
+        <p>Encuentra alimento, productos de aseo, camas y accesorios para perros y gatos. 100% de las ganancias apoyan el rescate animal.</p>
+    </header>
+
+    <main>
+
+        <section class="catalogo-productos">
+            <h2>Nuestros Productos</h2>
+
+            <!-- CONTENEDOR DINÁMICO: JavaScript inyectará aquí los productos de MongoDB -->
+            <div id="contenedor-tienda" class="grid-catalogo">
+                <!-- Se cargará automáticamente desde el backend -->
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Huellitas de Amor | Refugio y adopción de perritos y gatitos en Medellín</p>
+        <p>Correo: <a href="mailto:contacto@huellitasdeamor.example">contacto@huellitasdeamor.example</a></p>
+        <p>&copy; 2026 Huellitas de Amor</p>
+    </footer>
+
+    <a
+    class="whatsapp-fijo"
+    href="https://wa.me/573114231400"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp, se abre en otra pestaña">
+    WhatsApp
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

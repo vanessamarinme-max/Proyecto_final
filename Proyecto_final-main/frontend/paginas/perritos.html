@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora nuestro catálogo de perritos y gatitos disponibles para adopción en Huellitas de Amor en Medellín. Encuentra a tu nuevo compañero ideal.">
+    <title>Mascotas en Adopción | Huellitas de Amor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../img/logo.jpg"
+             alt="Logo de Huellitas de Amor"
+             width="150">
+
+        <nav aria-label="Navegación principal">
+            <ul id="menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="perritos.html" class="activo" aria-current="page">Mascotas en adopción</a></li>
+                <li><a href="adopcion.html">Solicitud de adopción</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="login.html">Admin</a></li>
+            </ul>
+        </nav>
+
+        <h1>Nuestras mascotas en adopción</h1>
+
+        <p>Conoce a los peluditos que actualmente están buscando un hogar amoroso en Medellín. ¡Haz clic en adoptar para iniciar el proceso!</p>
+    </header>
+
+    <main>
+
+        <section class="catalogo-perritos">
+            <h2>Catálogo de peluditos disponibles</h2>
+
+            <!-- CONTENEDOR DINÁMICO: JavaScript inyectará aquí los perritos de MongoDB -->
+            <div id="contenedor-perritos">
+                <!-- Se cargará automáticamente al iniciar -->
+            </div>
+
+        </section>
+
+        <section id="informacion-adopcion">
+            <h2>Información sobre el proceso de adopción</h2>
+
+            <p>Todas nuestras mascotas se entregan <strong>esterilizadas (o con compromiso de esterilización si son muy cachorros), desparasitadas y con carné de vacunación al día</strong>.</p>
+
+            <aside>
+                <h3>¿Qué necesitas para adoptar?</h3>
+
+                <ul>
+                    <li>Ser mayor de edad y presentar documento de identidad.</li>
+                    <li>Diligenciar el formulario de solicitud de adopción.</li>
+                    <li>Comprobante de residencia (factura de servicios públicos).</li>
+                    <li>Contar con la aprobación de todos los miembros del hogar.</li>
+                </ul>
+            </aside>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Huellitas de Amor | Refugio y adopción de perritos y gatitos en Medellín</p>
+        <p>Correo: <a href="mailto:contacto@huellitasdeamor.example">contacto@huellitasdeamor.example</a></p>
+        <p>&copy; 2026 Huellitas de Amor</p>
+    </footer>
+
+    <a
+    class="whatsapp-fijo"
+    href="https://wa.me/573114231400"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp, se abre en otra pestaña">
+    WhatsApp
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

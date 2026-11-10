@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel privado de administración para añadir nuevos rescatados y productos en Huellitas de Amor.">
+    <title>Panel Administrador | Huellitas de Amor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <p><strong>Huellitas de Amor - Panel Admin</strong></p>
+
+        <nav aria-label="Navegación de administración">
+            <ul id="menu">
+                <li><a href="../index.html">Ver Sitio Web</a></li>
+                <li><a href="perritos.html">Ver Catálogo Perritos</a></li>
+                <li><a href="tienda.html">Ver Tienda</a></li>
+                <li><a href="login.html" class="btn-cerrar">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Panel General de Control</h1>
+
+        <!-- SECCIÓN 1: Agregar Perrito -->
+        <section class="seccion-gestion">
+            <h2>1. Registrar nuevo perrito en adopción</h2>
+
+            <!-- CAMBIO: Se removió action y method, y se añadió id="form-perrito" -->
+            <form id="form-perrito" enctype="multipart/form-data" class="form-admin">
+                <fieldset>
+                    <legend>Información del perrito</legend>
+
+                    <p>
+                        <label for="nombre_perrito">Nombre del perrito:</label>
+                        <input type="text" id="nombre_perrito" name="nombre_perrito" placeholder="Ej: Tobías" required>
+                    </p>
+
+                    <p>
+                        <label for="edad_perrito">Edad aproximada:</label>
+                        <input type="text" id="edad_perrito" name="edad_perrito" placeholder="Ej: 1 año y 2 meses" required>
+                    </p>
+
+                    <p>
+                        <label for="sexo_perrito">Sexo:</label>
+                        <select id="sexo_perrito" name="sexo_perrito" required>
+                            <option value="">Selecciona el sexo</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="tamano_perrito">Tamaño:</label>
+                        <select id="tamano_perrito" name="tamano_perrito" required>
+                            <option value="">Selecciona el tamaño</option>
+                            <option value="Pequeño">Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="foto_perrito">Fotografía del perrito (JPG/PNG):</label>
+                        <input type="file" id="foto_perrito" name="foto_perrito" accept="image/png, image/jpeg" required>
+                    </p>
+
+                    <p>
+                        <label for="descripcion_perrito">Descripción:</label>
+                        <textarea id="descripcion_perrito" name="descripcion_perrito" rows="4" cols="40" placeholder="Detalles de salud o historia..." required></textarea>
+                    </p>
+                </fieldset>
+
+                <button type="submit" class="btn-cta">Publicar Perrito</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- SECCIÓN 2: Agregar Producto -->
+        <section class="seccion-gestion">
+            <h2>2. Registrar nuevo producto en la tienda</h2>
+            <p>Añade camas, ropa o accesorios para vender en la tienda virtual.</p>
+
+            <!-- CAMBIO: Se removió action y method, y se añadió id="form-producto" -->
+            <form id="form-producto" enctype="multipart/form-data" class="form-admin">
+                <fieldset>
+                    <legend>Información del producto</legend>
+
+                    <p>
+                        <label for="nombre_producto">Nombre del producto:</label>
+                        <input type="text" id="nombre_producto" name="nombre_producto" placeholder="Ej: Cama Suave XL" required>
+                    </p>
+
+                    <p>
+                        <label for="categoria_producto">Categoría:</label>
+                        <select id="categoria_producto" name="categoria_producto" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Camas">Camas</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Accesorios">Accesorios</option>
+                            <option value="Juguetes">Juguetes</option>
+                            <option value="Alimento">Alimento / Snacks</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="precio_producto">Precio ($ COP):</label>
+                        <input type="number" id="precio_producto" name="precio_producto" min="1000" step="500" placeholder="Ej: 45000" required>
+                    </p>
+
+                    <p>
+                        <label for="stock_producto">Cantidad disponible en stock:</label>
+                        <input type="number" id="stock_producto" name="stock_producto" min="1" max="100" placeholder="Ej: 10" required>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Imagen y detalles</legend>
+
+                    <p>
+                        <label for="foto_producto">Fotografía del producto (JPG/PNG):</label>
+                        <input type="file" id="foto_producto" name="foto_producto" accept="image/png, image/jpeg" required>
+                    </p>
+
+                    <p>
+                        <label for="descripcion_producto">Descripción del producto:</label>
+                        <textarea id="descripcion_producto" name="descripcion_producto" rows="4" cols="40" maxlength="300" placeholder="Materiales, especificaciones de tallas, etc..." required></textarea>
+                    </p>
+                </fieldset>
+
+                <button type="submit" class="btn-cta">Publicar Producto</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Huellitas de Amor | Refugio y adopción de perritos en Medellín</p>
+        <p>&copy; 2026 Huellitas de Amor - Área Administrativa</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

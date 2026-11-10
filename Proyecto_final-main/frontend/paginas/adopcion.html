@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diligencia el formulario de solicitud para adoptar un perrito en Huellitas de Amor en Medellín y conoce nuestros horarios de atención.">
+    <title>Solicitud de Adopción | Huellitas de Amor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <p><strong>Huellitas de Amor</strong></p>
+
+        <nav aria-label="Navegación principal">
+            <ul id="menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="perritos.html">Perritos en adopción</a></li>
+                <li><a href="adopcion.html" class="activo" aria-current="page">Solicitud de adopción</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Adopta un perrito</h1>
+
+        <p>¿Quieres darle un hogar lleno de amor a uno de nuestros rescatados? Diligencia este formulario para postularte como adoptante o consultar información sobre el proceso.</p>
+
+        <section>
+            <h2>Formulario de solicitud de adopción</h2>
+
+            <form action="adopcion.html" method="post">
+
+                <fieldset>
+                    <legend>Tus datos personales</legend>
+
+                    <p>
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre"
+                            minlength="3" required>
+                    </p>
+
+                    <p>
+                        <label for="documento">Número de documento:</label>
+                        <input type="text" id="documento" name="documento"
+                            pattern="[0-9]{6,10}"
+                            title="Ingresa entre 6 y 10 números, sin puntos ni espacios."
+                            required>
+                    </p>
+
+                    <p>
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" id="correo" name="correo"
+                            required>
+                    </p>
+
+                    <p>
+                        <label for="celular">Celular de contacto:</label>
+                        <input type="tel" id="celular" name="celular"
+                            pattern="3[0-9]{9}"
+                            title="Ingresa 10 dígitos y comienza por 3. Ejemplo: 3001234567."
+                            required>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Detalles de la adopción</legend>
+
+                    <p>
+                        <label for="fecha">Fecha tentativa de visita o entrega:</label>
+                        <input type="date" id="fecha" name="fecha"
+                            min="2026-11-01"
+                            max="2026-12-31"
+                            required>
+                    </p>
+
+                    <p>Preferencia de tamaño del perrito:</p>
+
+                    <input type="radio" id="pequeno" name="tamano"
+                        value="pequeno" required>
+                    <label for="pequeno">Pequeño</label>
+
+                    <input type="radio" id="mediano" name="tamano"
+                        value="mediano">
+                    <label for="mediano">Mediano</label>
+
+                    <input type="radio" id="grande" name="tamano"
+                        value="grande">
+                    <label for="grande">Grande</label>
+
+                    <p>
+                        <label for="tipo_vivienda">Tipo de vivienda:</label>
+                        <select id="tipo_vivienda" name="tipo_vivienda" required>
+                            <option value="">Selecciona tu tipo de vivienda</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="casa">Casa con patio/jardín</option>
+                            <option value="finca">Finca / Casa campestre</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="cantidad_mascotas">Mascotas actuales en el hogar:</label>
+                        <input type="number" id="cantidad_mascotas" name="cantidad_mascotas"
+                            min="0" max="6" step="1" required>
+                    </p>
+
+                    <p>
+                        <label for="programa">Programa de interés:</label>
+                        <select id="programa" name="programa" required>
+                            <option value="adopcion_definitiva">Adopción definitiva</option>
+                            <option value="hogar_paso">Hogar de paso (temporal)</option>
+                            <option value="voluntariado">Voluntariado de paseos/cuidados</option>
+                            <option value="padrino">Padrino de manutención</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="comentarios">Cuéntanos sobre tu hogar y si te interesa un perrito en específico:</label>
+                        <textarea id="comentarios" name="comentarios"
+                            rows="4" cols="40"
+                            maxlength="300"
+                            placeholder="Ejemplo: Me interesa adoptar un perrito cachorro, tengo patio en casa..."></textarea>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Confirmación y compromisos</legend>
+
+                    <p>
+                        <input type="checkbox" id="politicas"
+                            name="politicas" value="aceptadas" required>
+                        <label for="politicas">
+                            Acepto las políticas de adopción responsable y el compromiso de cuidado.
+                        </label>
+                    </p>
+                </fieldset>
+
+                <button type="submit">Enviar solicitud de adopción</button>
+
+            </form>
+
+        </section>
+
+        <section>
+            <h2>Horario de atención del refugio</h2>
+
+            <dl>
+                <dt>Lunes a viernes</dt>
+                <dd>8:00 a. m. a 5:00 p. m.</dd>
+
+                <dt>Sábados, domingos y festivos (Jornadas de adopción)</dt>
+                <dd>9:00 a. m. a 3:00 p. m.</dd>
+            </dl>
+        </section>
+
+        <p><a href="perritos.html">Conoce nuestros perritos en adopción</a></p>
+    </main>
+
+    <footer>
+        <p>Huellitas de Amor | Refugio y adopción de perritos en Medellín</p>
+        <p>Correo: <a href="mailto:contacto@huellitasdeamor.example">contacto@huellitasdeamor.example</a></p>
+        <p>© 2026 Huellitas de Amor</p>
+    </footer>
+
+    <a
+    class="whatsapp-fijo"
+    href="https://wa.me/573114231400"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp, se abre en otra pestaña">
+    WhatsApp
+    </a>
+    
+    <script src="../js/main.js"></script>
+</body>
+</html>
