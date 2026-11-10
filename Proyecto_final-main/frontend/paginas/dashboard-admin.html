@@ -34,7 +34,6 @@
         <section class="seccion-gestion">
             <h2>1. Registrar nuevo perrito en adopción</h2>
 
-            <!-- CAMBIO: Se removió action y method, y se añadió id="form-perrito" -->
             <form id="form-perrito" enctype="multipart/form-data" class="form-admin">
                 <fieldset>
                     <legend>Información del perrito</legend>
@@ -90,7 +89,6 @@
             <h2>2. Registrar nuevo producto en la tienda</h2>
             <p>Añade camas, ropa o accesorios para vender en la tienda virtual.</p>
 
-            <!-- CAMBIO: Se removió action y method, y se añadió id="form-producto" -->
             <form id="form-producto" enctype="multipart/form-data" class="form-admin">
                 <fieldset>
                     <legend>Información del producto</legend>
@@ -139,6 +137,24 @@
 
                 <button type="submit" class="btn-cta">Publicar Producto</button>
             </form>
+        </section>
+
+        <hr>
+
+        <!-- SECCIÓN 3: Reportes y Analítica Avanzada -->
+        <section class="seccion-gestion">
+            <h2>3. Reportes y Analítica del Sistema</h2>
+            <p>Consulta métricas en tiempo real, inventarios por categoría y estadísticas de adopción procesadas mediante MongoDB Aggregation Pipelines.</p>
+
+            <div class="botones-reportes" style="margin-bottom: 20px;">
+                <button type="button" id="btn-rep-perritos" class="btn-cta" style="margin-right: 10px; margin-bottom: 10px;">Perritos por Tamaño</button>
+                <button type="button" id="btn-rep-tienda" class="btn-cta" style="margin-right: 10px; margin-bottom: 10px;">Inventario Tienda</button>
+                <button type="button" id="btn-rep-solicitudes" class="btn-cta" style="margin-bottom: 10px;">Solicitudes con Adoptantes</button>
+            </div>
+
+            <div id="contenedor-resultados-reporte" class="resultado-reportes-box" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; min-height: 100px;">
+                <p>Haz clic en cualquiera de los botones superiores para generar el reporte analítico en pantalla.</p>
+            </div>
         </section>
 
     </main>
