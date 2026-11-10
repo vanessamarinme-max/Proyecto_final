@@ -37,43 +37,9 @@ db.solicitudesAdopcion.aggregate([
 ]);
 
 
-// ==========================================
-// CONSULTA 3: PERROS POR REFUGIO
-// ==========================================
-
-db.perros.aggregate([
-
-    {
-        $lookup: {
-            from: "refugios",
-            localField: "refugio_id",
-            foreignField: "_id",
-            as: "refugio"
-        }
-    },
-
-    {
-        $unwind: "$refugio"
-    },
-
-    {
-        $group: {
-            _id: "$refugio.nombre",
-            totalPerros: { $sum: 1 }
-        }
-    },
-
-    {
-        $sort: {
-            totalPerros: -1
-        }
-    }
-
-]);
-
 
 // ==========================================
-// CONSULTA 4: ATENCIONES VETERINARIAS
+// CONSULTA 3: ATENCIONES VETERINARIAS
 // ==========================================
 
 db.registrosVeterinarios.aggregate([
@@ -99,7 +65,7 @@ db.registrosVeterinarios.aggregate([
 
 
 // ==========================================
-// CONSULTA 5: ADOPCIONES POR MES
+// CONSULTA 4: ADOPCIONES POR MES
 // ==========================================
 
 db.solicitudesAdopcion.aggregate([
@@ -136,7 +102,7 @@ db.solicitudesAdopcion.aggregate([
 
 
 // ==========================================
-// CONSULTA 6: SOLICITUDES CON ADOPTANTES
+// CONSULTA 5: SOLICITUDES CON ADOPTANTES
 // Y PERROS
 // ==========================================
 
