@@ -146,6 +146,11 @@ Se implementaron tres pipelines de agregación en MongoDB dentro de `crud.py`:
 
 ---
 
-## 🔗 Enlaces del Proyecto
+## Enlaces del Proyecto
 * **Repositorio en GitHub:** `https://github.com/luisachoachisa-ctrl/Proyecto_final`
 * **Aplicación Desplegada en Internet:** `http://127.0.0.1:5000` (Ejecución local / enlace de despliegue)
+
+---
+## Enlaces del Proyecto Desplegado
+* **Frontend (AWS Amplify):** https://main.d3ji3n4vrmn0nx.amplifyapp.com/
+* **Backend API (AWS EC2):** http://54.210.12.34:5000
